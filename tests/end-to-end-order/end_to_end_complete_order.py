@@ -28,6 +28,7 @@ class OrderTest(unittest.TestCase):
         cls.checkout_step_two_page = CheckoutStepTwoPage.CheckoutStepTwoPage(cls.driver)
         cls.checkout_complete_page = CheckoutCompletePage.CheckoutCompletePage(cls.driver)
 
+    #login with a valid user
     def test_step_1(self):
 
         self.login_page.go_to()
@@ -37,10 +38,12 @@ class OrderTest(unittest.TestCase):
 
         assert self.login_page.get_page_loaded_url() == self.products_page.get_url()
 
+    #select a random product
     def test_step_2(self):
         self.__class__.choosen_item_title = self.products_page.add_random_item_to_cart()
         assert self.__class__.choosen_item_title is not None
 
+    #go to cart page and proceed to checkout
     def test_step_3(self):
 
         self.cart_page.go_to()
@@ -52,6 +55,7 @@ class OrderTest(unittest.TestCase):
 
         assert self.cart_page.get_page_loaded_url() == self.checkout_step_one_page.get_url()
 
+    #fill the first checkout page fields and continue
     def test_step_4(self):
 
         self.checkout_step_one_page.fill_first_name('fernando')
@@ -61,6 +65,7 @@ class OrderTest(unittest.TestCase):
 
         assert self.checkout_step_one_page.get_page_loaded_url() == self.checkout_step_two_page.get_url()
 
+    #verify order details and finish
     def test_step_5(self):
 
         assert self.checkout_step_two_page.get_added_item_title() == self.__class__.choosen_item_title
