@@ -1,0 +1,6 @@
+IMPLICITLY_WAIT_TIME_DEFAULT = 5
+EXPLICITLY_WAIT_TIME_DEFAULT = 10
+
+WEBDRIVER_PATH = '../../resources/webdriver/chromedriver.exe'
+
+HEADLESS_DEFAULT = True
